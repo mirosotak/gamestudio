@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="css/bootstrap.css" />
+
+
+<title>Index</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col-7">
+				<h1 id="">GameStudioMs</h1>
+			</div>
+			<br /> <br />
+		</div>
+		<div class="row">
+			<div class="col-10"></div>
+			<div class="col-2">
+				<a href='/login'>Login/Register</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-9">
+				<article id="Intro">
+					<h2>Welcome to GameScoreMS !!!</h2>
+
+					<p>Dear player. Play our games and get some information about
+						your skills, get the best score, write us the comment, put the
+						rating to your favorite games and compare yourself with your
+						friends. HAVE FUN</p>
+				</article>
+				<div class="col-1"></div>
+				<br />
+
+				<div class="col-1"></div>
+				<div class="row" th:each='gameInfo : ${gameInfos}'>
+					<div class="col-sm">
+						<p th:text='${gameInfo.gameName}' />
+					</div>
+					<div class="col-sm">
+						Best score and player:
+						<p
+							th:text='${gameInfo.bestScore != null ? gameInfo.bestScore.value + " " + gameInfo.bestScore.username : ""}' />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-6">
+				<table>
+					<tr>
+						<th>Game name</th>
+						<th>Best score</th>
+						<th>Avg. rating</th>
+						
+
+						<th th:if='${isLogged}'>Favorite</th>
+					</tr>
+					<tr th:each='gameInfo : ${gameInfos}'>
+						<td><a th:href="@{'/' + ${gameInfo.gameName}}">
+								<p th:text='${gameInfo.gameName}' />
+						</a></td>
+
+						<td
+							th:text='${gameInfo.bestScore != null ? gameInfo.bestScore.value + " " + gameInfo.bestScore.username : ""}' />
+						<td th:text='${gameInfo.averageRating}' />
+						<td th:text='${gameInfo.favorite}' th:if='${isLogged}'></td>
+					</tr>
+				</table>
+				<div class="col-1"></div>
+			</div>
+		</div>
+
+		<br /> <br />
+
+
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-3">
+				<footer>
+					Miro Sotak <br /> (c) 2017 <br />
+				</footer>
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

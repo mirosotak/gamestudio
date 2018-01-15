@@ -1,0 +1,46 @@
+.tablePuzzle td{
+	
+	text-align: center;
+	border: solid;
+	font-size: 4rem;
+	width: 20%;
+	height: 20%;
+}
+
+
+.tableMines {
+	
+	text-align: center;
+	border: solid;
+	width: 30%;
+	height: 30%;
+}
+	
+h2 {
+font-style: italic;
+
+}
+
+body {
+    background-color: #c0c0c0;
+}
+
+.mines_comment_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+}
+
+.puzzle_comment_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+}
+
+
+	
+	
+	
+	
+	 
+	

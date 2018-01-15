@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>finalScores</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/finalScore.css">
+<link rel="stylesheet" href="css/normalize.css" />
+
+</head>
+<body id=fS>
+
+	<header>
+		<h1>GamesScoreBoard</h1>
+
+	</header>
+
+	<main>
+	<article id="Start">
+		<h2>Welcome to GameScoreBoard !!!</h2>
+		<p>Dear customer. Get some information about your skills in our
+			Games and compare yourself with your friends. HAVE FUN</p>
+		<footer class="menuLink">
+			<a href="#menuClNazov">Menu</a>
+		</footer>
+	</article>
+
+
+	<article id="description">
+		<table>
+			<caption>Favorite Games</caption>
+			<tbody>
+				<tr>
+					<div class="col-sm-6">
+					<th>name</th>
+					<th>instructions</th>
+					<th>visual</th>
+					<th>score</th>
+					</div>
+				</tr>
+				<tr>
+					<td><a href="/mines">Mines</a></td>
+					<td><a
+						href="https://help.gnome.org/users/gnome-mines/stable/rules.html.en"
+						target="_blank">Mines instructions</a> <br></td>
+					<td><img src="obr/mines.png" title="obr.mines" alt="mines"
+						width="50" height="50"></td>
+					<td><div id="minesBestScore">todo</div></td>
+				</tr>
+				<tr>
+					<td><a href="/puzzle">15Puzzle</a></td>
+					<td><a
+						href="http://www.instructables.com/id/How-To-Solve-The-15-Puzzle/"
+						target="_blank">Puzzle instructions</a> <br></td>
+					<td><img src="obr/15puzzle.png" title="obr.15puzzle"
+						alt="15puzzle" width="70" height="70"></td>
+					<td><div id="scoreTablePuzzle"/></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</article>
+
+	<article id="score">
+
+		<form id="viewScore">
+
+			<h2>Game</h2>
+			<label for="gameSelector"> Select the Game <br>
+			</label> <select id="gameSelector" name="game" size=1>
+				<option value="m" selected>Mines</option>
+				<option value="p">15Puzzle</option>
+			</select> <br> <br>
+
+
+			<h2>Player</h2>
+			<label>Enter your name: <input type="text" id="userName"
+				placeholder="Enter your name" />
+			</label>
+
+
+			<h2>Score</h2>
+			<label>Enter your score <br> <br> <input
+				type="text" id="newScore" placeholder="Insert your score" />
+			</label> <br> <br>
+
+			<button type="button" id="btSaveScore">Save Score</button>
+
+			<br>
+			<hr>
+
+			<h2>List of scores</h2>
+			<br>
+
+			<div id="scoreTableMines">  </div>
+			<div id="scoreTablePuzzle"> </div>
+
+
+		</form>
+	</article>
+	<br>
+	<br>
+	<br>
+	</main>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous">
+		
+	</script>
+
+	<script>
+		window.jQuery
+				|| document.write('<script src="js/jquery.min.js"><\/script>')
+	</script>
+
+<!--
+	<script id="tmplScores" type="text/template">
+    
+	<ol>
+    {{#.}}
+    <li> {{username}}   {{value}} </li>
+    {{/.}}
+    </ol>
+
+	</script>-->
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+	<script>
+		window.Mustache
+				|| document
+						.write('<script src="js/mustache.min.js"><\/script>')
+	</script>
+ 
+	<script src="js/finalScore.js"></script>
+
+
+	<footer>
+		Miro Sotak <br> (c) 2017 <br />
+	</footer>
+
+	<br>
+
+	<aside>
+		<p>linky</p>
+		<ul>
+			<li><a href="https://www.youtube.com" target="_blank">Youtube</a>
+				<br />
+			<li><a href="https://www.google.com" target="_blank">Google</a>
+		</ul>
+	</aside>
+</body>
+</html>
