@@ -50,8 +50,15 @@ public class HomePageController {
 		gamePuzzle.setFavorite(false);
 		gamePuzzle.setAverageRating(ratingService.getAverageRating(gamePuzzle.getGameName()));
 
+		GameInfo gameGuessNumber = new GameInfo();
+		gameGuessNumber.setGameName("guessNumber");
+		gameGuessNumber.setBestScore(scoreService.getBestScore(gameGuessNumber.getGameName()));
+		gameGuessNumber.setFavorite(false);
+		gameGuessNumber.setAverageRating(ratingService.getAverageRating(gameGuessNumber.getGameName()));
+
 		gameInfos.add(gameMines);
 		gameInfos.add(gamePuzzle);
+		gameInfos.add(gameGuessNumber);
 
 		System.out.println("gameInfos:" + gameInfos);
 
@@ -61,7 +68,4 @@ public class HomePageController {
 		return "homePage";
 
 	}
-
-	
-
 }

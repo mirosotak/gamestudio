@@ -14,7 +14,6 @@ import org.springframework.web.context.WebApplicationContext;
 public class GuessNumberController {
 	
 	Random rand = new Random();
-	
 	Integer number = null;
 
 	@RequestMapping("/guess-number/start")
@@ -35,7 +34,7 @@ public class GuessNumberController {
 	
 	private void handleStartGameAction(Integer maxNumber) {	
 		if (maxNumber == null) {
-			maxNumber = 100;
+			maxNumber = 1000;
 		}
 		
 		generateAndSetRandomNumber(maxNumber);
