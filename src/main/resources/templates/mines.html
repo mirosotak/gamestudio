@@ -12,6 +12,29 @@
 </head>
 <body>
 
+	<!-- <span th:if='${@userController.Logged}'> -->
+	<!-- 			<div class="row"> -->
+	<!-- 			<div class="col-3"></div> -->
+	<!-- 			<div class="col-9"> -->
+	<!-- 			<h6>Favorite games</h6> -->
+	<!-- 			</div> -->
+	<!-- 				<div class="col-3"></div> -->
+	<!-- 				<div class="col-9"> -->
+	<!-- 					<table> -->
+	<!-- 						<th th:each='favourite : ${favourites}' > -->
+	<!-- 						<tr> -->
+	<!-- 							<a th:href='${favovorite.game}'><img th:src='${"obr/" + favorite.game + ".jpg" }' width='70' height='70'/> </a> -->
+	<!-- 						</tr> -->
+	<!-- 						</th> -->
+	<!-- 					</table> -->
+
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 	</span> -->
+
+
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-4"></div>
@@ -23,26 +46,54 @@
 
 		<div class="row">
 
-			<div class="col-3">
+			<div class="col-1">
 				<a href='/mines'>NEW GAME</a>
 			</div>
 
-			<div class="col-6"></div>
-			<div class="col-3">
+
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-2">
+					<h2>Favorite game</h2>
+				</div>
+				<div class="col-2"></div>
+				<span th:if='${@userController.logged}'>
+
+					<div class="col-3">
+						<form action="/minesFavorite" method="post">
+							<label for="minesFavorite"> Is this game your favorite? </label>
+							<br /> <select id="minesFavorite" name="newFavorite">
+								<option value="1">Favorite</option>
+								<option value="2">Not Favorite</option>
+							</select>
+							<button type="submit" id="saveFavorite">SetFavorite</button>
+						</form>
+					</div>
+				</span>
+			</div>
+
+
+
+			<div class="col-1"></div>
+			<div class="col-1">
 				<a href='/homePage'>HOME PAGE</a>
 			</div>
 		</div>
+
+
 
 		<div class="row">
 			<div class="col-4"></div>
 			<div class="col-5">
 				<p th:utext='${minesController.render()}' />
+
 				<p th:text='${minesController.message}' />
 
 				<br /> ActionSetTo: <a href='/mines_mark'> <span
 					th:if='${minesController.marking}'>Marking</span> <span
 					th:if='${not minesController.marking}'>Opening</span>
 				</a>
+				<br />
 
 			</div>
 			<div class="col-3"></div>
@@ -131,6 +182,8 @@
 				<div th:replace="footer::nice_footer"></div>
 			</div>
 		</div>
+
+
 	</div>
 
 

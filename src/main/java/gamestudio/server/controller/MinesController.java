@@ -72,12 +72,12 @@ public class MinesController {
 
 	}
 
-	@RequestMapping("/favorite")
+	@RequestMapping("/minesFavorite")
 	public String handleFavorite(@RequestParam(value = "gameName", required = true) String gameName, Model model) {
 		
 		Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), gameName);
 		favoriteService.addFavorite(favorites);
-		return "homePage";
+		return "mines";
 		
 	}
 
