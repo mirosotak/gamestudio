@@ -73,10 +73,12 @@ public class MinesController {
 	}
 
 	@RequestMapping("/minesFavorite")
-	public String handleFavorite(@RequestParam(value = "gameName", required = true) String gameName, Model model) {
+	public String handleFavorite(Model model) {
 		
-		Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), gameName);
+		Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), "mines");
 		favoriteService.addFavorite(favorites);
+		
+		fillModel(model);
 		return "mines";
 		
 	}
@@ -138,6 +140,7 @@ public class MinesController {
 		model.addAttribute("scores", scoreService.getTopScores("mines"));
 		model.addAttribute("comment", commentService.getComments("mines"));
 		model.addAttribute("rating", ratingService.getAverageRating("mines"));
+		
 	}
 
 	public String render() {
@@ -180,6 +183,14 @@ public class MinesController {
 
 		sb.append("</table>\n");
 		return sb.toString();
+	}
+	
+	public Boolean isFavorite() {
+		if (userController.isLogged()) {
+			Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), "mines");
+			return favoriteService.isFavorite(favorites);
+		}
+		return null;
 	}
 
 	private void startNewGame() {

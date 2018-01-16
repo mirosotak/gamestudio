@@ -72,7 +72,12 @@
 						<td
 							th:text='${gameInfo.bestScore != null ? gameInfo.bestScore.value + " " + gameInfo.bestScore.username : ""}' />
 						<td th:text='${gameInfo.averageRating}' />
-						<td th:text='${gameInfo.favorite}' th:if='${isLogged}'></td>
+						<td th:if='${isLogged and gameInfo.favorite}'>
+							<img src='obr/up.png' width='50' height='50'/>
+						</td>
+						<td th:if='${isLogged and not gameInfo.favorite}'>
+							<img src='obr/down.png' width='50' height='50'/>
+						</td>
 					</tr>
 				</table>
 				<div class="col-1"></div>
@@ -94,6 +99,11 @@
 					<li><a
 						href="http://instructables.com/id/How-To-Solve-The-15-Puzzle/"
 						target="_blank">Puzzle Instructions</a></li>
+
+					<li><a
+						href="https://www.mathsisfun.com/games/guess_number.html"
+						target="_blank">GuessNumber Instructions</a></li>
+
 				</ul>
 			</aside>
 		</div>

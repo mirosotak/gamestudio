@@ -114,7 +114,7 @@
 
 			<div class="col-6">
 				<table class='puzzle_comment_table'>
-					<tr th:each='comment : ${comment}'>
+					<tr th:each='comment : ${comments}'>
 						<td th:text='${comment.username}' />
 						<td th:text='${comment.content}' />
 						<td th:text='${comment.createdOn}' />

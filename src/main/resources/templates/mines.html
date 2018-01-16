@@ -60,6 +60,12 @@
 				<span th:if='${@userController.logged}'>
 
 					<div class="col-3">
+						<a th:if='${minesController.isFavorite()}' href='/minesFavorite'>
+							<img src='obr/up.png' width='50' height='50'/> 
+						</a>
+						<a th:if='${not minesController.isFavorite()}' href='/minesFavorite'>
+							<img src='obr/down.png' width='50' height='50'/> 
+						</a>
 						<form action="/minesFavorite" method="post">
 							<label for="minesFavorite"> Is this game your favorite? </label>
 							<br /> <select id="minesFavorite" name="newFavorite">
@@ -67,6 +73,7 @@
 								<option value="2">Not Favorite</option>
 							</select>
 							<button type="submit" id="saveFavorite">SetFavorite</button>
+							
 						</form>
 					</div>
 				</span>

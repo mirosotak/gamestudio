@@ -37,28 +37,9 @@ public class HomePageController {
 	public String handleHomePage(Model model) {
 
 		List<GameInfo> gameInfos = new ArrayList<>(2);
-
-		GameInfo gameMines = new GameInfo();
-		gameMines.setGameName("mines");
-		gameMines.setBestScore(scoreService.getBestScore(gameMines.getGameName()));
-		gameMines.setFavorite(true);
-		gameMines.setAverageRating(ratingService.getAverageRating(gameMines.getGameName()));
-
-		GameInfo gamePuzzle = new GameInfo();
-		gamePuzzle.setGameName("puzzle");
-		gamePuzzle.setBestScore(scoreService.getBestScore(gamePuzzle.getGameName()));
-		gamePuzzle.setFavorite(false);
-		gamePuzzle.setAverageRating(ratingService.getAverageRating(gamePuzzle.getGameName()));
-
-		GameInfo gameGuessNumber = new GameInfo();
-		gameGuessNumber.setGameName("guessNumber");
-		gameGuessNumber.setBestScore(scoreService.getBestScore(gameGuessNumber.getGameName()));
-		gameGuessNumber.setFavorite(false);
-		gameGuessNumber.setAverageRating(ratingService.getAverageRating(gameGuessNumber.getGameName()));
-
-		gameInfos.add(gameMines);
-		gameInfos.add(gamePuzzle);
-		gameInfos.add(gameGuessNumber);
+		gameInfos.add(prepareGameInfoData("mines"));
+		gameInfos.add(prepareGameInfoData("puzzle"));
+		gameInfos.add(prepareGameInfoData("guessNumber"));
 
 		System.out.println("gameInfos:" + gameInfos);
 
@@ -66,6 +47,22 @@ public class HomePageController {
 		model.addAttribute("isLogged", userController.isLogged());
 
 		return "homePage";
+
+	}
+
+	private GameInfo prepareGameInfoData(String gameName) {
+		GameInfo gameInfo = new GameInfo();
+
+		if (userController.isLogged()) {
+			Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), gameName);
+			gameInfo.setFavorite(favoriteService.isFavorite(favorites));
+		}
+
+		gameInfo.setGameName(gameName);
+		gameInfo.setBestScore(scoreService.getBestScore(gameInfo.getGameName()));
+		gameInfo.setAverageRating(ratingService.getAverageRating(gameInfo.getGameName()));
+
+		return gameInfo;
 
 	}
 }
