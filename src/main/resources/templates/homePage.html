@@ -46,7 +46,7 @@
 			</div>
 		</div>
 
-		<div class="row" >
+		<div class="row">
 			<div class="col-1"></div>
 			<div class="col-6">
 				<table>
@@ -63,7 +63,8 @@
 
 						<td
 							th:text='${gameInfo.bestScore != null ? gameInfo.bestScore.value + "  " + gameInfo.bestScore.username : ""}' />
-						<td th:text='${gameInfo.averageRating}' />
+						<td
+							th:text='${#numbers.formatDecimal(gameInfo.averageRating,1,2)}' />
 
 
 						<td th:if='${isLogged and gameInfo.favorite}'><img
