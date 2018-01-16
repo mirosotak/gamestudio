@@ -12,28 +12,11 @@
 </head>
 <body>
 
-	<!-- <span th:if='${@userController.Logged}'> -->
-	<!-- 			<div class="row"> -->
-	<!-- 			<div class="col-3"></div> -->
-	<!-- 			<div class="col-9"> -->
-	<!-- 			<h6>Favorite games</h6> -->
-	<!-- 			</div> -->
-	<!-- 				<div class="col-3"></div> -->
-	<!-- 				<div class="col-9"> -->
-	<!-- 					<table> -->
-	<!-- 						<th th:each='favourite : ${favourites}' > -->
-	<!-- 						<tr> -->
-	<!-- 							<a th:href='${favovorite.game}'><img th:src='${"obr/" + favorite.game + ".jpg" }' width='70' height='70'/> </a> -->
-	<!-- 						</tr> -->
-	<!-- 						</th> -->
-	<!-- 					</table> -->
 
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 	</span> -->
-
-
-
+	<!-- 		<table> -->
+	<!-- 			<th th:each='favourite : ${favourites}' > -->
+	<!-- 				<tr> -->
+	<!-- 					<a th:href='${favovorite.game}'><img th:src='${"obr/" + favorite.game + ".jpg" }' width='70' height='70'/> </a> -->
 
 	<div class="container">
 		<div class="row">
@@ -42,47 +25,31 @@
 				<h1>MINES</h1>
 			</div>
 		</div>
+		<br />
+
+
 
 
 		<div class="row">
 
-			<div class="col-1">
+			<div class="col-3">
 				<a href='/mines'>NEW GAME</a>
 			</div>
-
-
-			<div class="row">
-				<div class="col-2"></div>
-				<div class="col-2">
-					<h2>Favorite game</h2>
-				</div>
-				<div class="col-2"></div>
-				<span th:if='${@userController.logged}'>
-
-					<div class="col-3">
-						<a th:if='${minesController.isFavorite()}' href='/minesFavorite'>
-							<img src='obr/up.png' width='50' height='50'/> 
-						</a>
-						<a th:if='${not minesController.isFavorite()}' href='/minesFavorite'>
-							<img src='obr/down.png' width='50' height='50'/> 
-						</a>
-						<form action="/minesFavorite" method="post">
-							<label for="minesFavorite"> Is this game your favorite? </label>
-							<br /> <select id="minesFavorite" name="newFavorite">
-								<option value="1">Favorite</option>
-								<option value="2">Not Favorite</option>
-							</select>
-							<button type="submit" id="saveFavorite">SetFavorite</button>
-							
-						</form>
-					</div>
+			<div class="col-3">
+				<h2>Favorite game</h2>
+			</div>
+			<div class="col-3">
+				<span th:if='${@userController.logged}'> <a
+					th:if='${minesController.isFavorite()}' href='/minesFavorite'>
+						<img src='obr/up.png' width='50' height='50' />
+				</a> <a th:if='${not minesController.isFavorite()}'
+					href='/minesFavorite'> <img src='obr/down.png' width='50'
+						height='50' />
+				</a>
 				</span>
 			</div>
 
-
-
-			<div class="col-1"></div>
-			<div class="col-1">
+			<div class="col-3">
 				<a href='/homePage'>HOME PAGE</a>
 			</div>
 		</div>
@@ -99,8 +66,7 @@
 				<br /> ActionSetTo: <a href='/mines_mark'> <span
 					th:if='${minesController.marking}'>Marking</span> <span
 					th:if='${not minesController.marking}'>Opening</span>
-				</a>
-				<br />
+				</a> <br />
 
 			</div>
 			<div class="col-3"></div>
@@ -117,6 +83,11 @@
 
 			<div class="col-4">
 				<table class='mines_score_table'>
+					<tr>
+						<th>Game name</th>
+						<th>Best score</th>
+					</tr>
+
 					<tr th:each='score : ${scores}'>
 						<td th:text='${score.username}' />
 						<td th:text='${score.value}' />
@@ -141,7 +112,7 @@
 							<option value="2">Nice</option>
 							<option value="3">GoodOne</option>
 							<option value="4">BoringStaff</option>
-							<option value="5">Bullshit</option>
+							<option value="5">NeverEver</option>
 						</select>
 						<button type="submit" id="saveRating">SaveRating</button>
 					</form>
@@ -176,6 +147,12 @@
 
 			<div class="col-6">
 				<table class='mines_comment_table'>
+					<tr>
+						<th>Game name</th>
+						<th>Best score</th>
+						<th>Date</th>
+					</tr>
+										
 					<tr th:each='comment : ${comment}'>
 						<td th:text='${comment.username}' />
 						<td th:text='${comment.content}' />

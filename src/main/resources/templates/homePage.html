@@ -27,6 +27,7 @@
 				<a href='/login'>Login/Register</a>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-1"></div>
 			<div class="col-9">
@@ -41,19 +42,10 @@
 				<div class="col-1"></div>
 				<br />
 
-				<div class="col-1"></div>
-				<div class="row" th:each='gameInfo : ${gameInfos}'>
-					<div class="col-sm">
-						<p th:text='${gameInfo.gameName}' />
-					</div>
-					<div class="col-sm">
-						Best score and player:
-						<p
-							th:text='${gameInfo.bestScore != null ? gameInfo.bestScore.value + " " + gameInfo.bestScore.username : ""}' />
-					</div>
-				</div>
+
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-1"></div>
 			<div class="col-6">
@@ -70,14 +62,14 @@
 						</a></td>
 
 						<td
-							th:text='${gameInfo.bestScore != null ? gameInfo.bestScore.value + " " + gameInfo.bestScore.username : ""}' />
+							th:text='${gameInfo.bestScore != null ? gameInfo.bestScore.value + "  " + gameInfo.bestScore.username : ""}' />
 						<td th:text='${gameInfo.averageRating}' />
-						<td th:if='${isLogged and gameInfo.favorite}'>
-							<img src='obr/up.png' width='50' height='50'/>
-						</td>
-						<td th:if='${isLogged and not gameInfo.favorite}'>
-							<img src='obr/down.png' width='50' height='50'/>
-						</td>
+
+
+						<td th:if='${isLogged and gameInfo.favorite}'><img
+							src='obr/up.png' width='50' height='50' /></td>
+						<td th:if='${isLogged and not gameInfo.favorite}'><img
+							src='obr/down.png' width='50' height='50' /></td>
 					</tr>
 				</table>
 				<div class="col-1"></div>

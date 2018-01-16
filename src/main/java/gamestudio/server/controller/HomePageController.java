@@ -36,7 +36,7 @@ public class HomePageController {
 	@RequestMapping("/homePage")
 	public String handleHomePage(Model model) {
 
-		List<GameInfo> gameInfos = new ArrayList<>(2);
+		List<GameInfo> gameInfos = new ArrayList<>();
 		gameInfos.add(prepareGameInfoData("mines"));
 		gameInfos.add(prepareGameInfoData("puzzle"));
 		gameInfos.add(prepareGameInfoData("guessNumber"));

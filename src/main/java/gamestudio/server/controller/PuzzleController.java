@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 
 import gamestudio.entity.Comment;
+import gamestudio.entity.Favorites;
 import gamestudio.entity.Rating;
 import gamestudio.entity.Score;
 import gamestudio.puzzle.core.Field;
 import gamestudio.service.CommentService;
+import gamestudio.service.FavoritesService;
 import gamestudio.service.RatingService;
 import gamestudio.service.ScoreService;
 
@@ -42,6 +44,8 @@ public class PuzzleController {
 	private RatingService ratingService;
 	@Autowired
 	private UserController userController;
+	@Autowired
+	private FavoritesService favoriteService;
 
 	public String getMessage() {
 		return message;
@@ -67,9 +71,20 @@ public class PuzzleController {
 	}
 
 	@RequestMapping("/puzzleRating")
-	public String rating(@RequestParam(value = "newRating", required = false) String newRating, Model model) {		
-		ratingService.setRating(new Rating(userController.getLoggedPlayer().getLogin(), "puzzle", Integer.parseInt(newRating)));
-		
+	public String rating(@RequestParam(value = "newRating", required = false) String newRating, Model model) {
+		ratingService.setRating(
+				new Rating(userController.getLoggedPlayer().getLogin(), "puzzle", Integer.parseInt(newRating)));
+
+		fillModel(model);
+		return "puzzle";
+	}
+
+	@RequestMapping("/puzzleFavorite")
+	public String handleFavorite(Model model) {
+
+		Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), "puzzle");
+		favoriteService.addFavorite(favorites);
+
 		fillModel(model);
 		return "puzzle";
 	}
@@ -120,6 +135,15 @@ public class PuzzleController {
 		return sb.toString();
 	}
 
+	public Boolean isFavorite() {
+		if (userController.isLogged()) {
+			Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), "puzzle");
+			return favoriteService.isFavorite(favorites);
+		}
+		return null;
+
+	}
+
 	private void startNewGame() {
 		startGameDate = new Date();
 		createField();
@@ -136,4 +160,3 @@ public class PuzzleController {
 	}
 
 }
-
