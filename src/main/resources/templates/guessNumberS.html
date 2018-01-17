@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<title>Guess a Number</title>
+</head>
+
+<body>
+
+	<div>
+	
+		
+		<div th:if ='${gameState!=null and "WON".equals(gameState.lastAttemptResult)}'>
+			Congratulations - You won !
+		</div>
+		<div th:if ='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "GREATER"}'>
+			Wrong number - your attempt is too high :(.
+		</div>
+		<div th:if ='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "LESS"}'>
+			Wrong number - your attempt is too little :(.
+		</div>
+		
+		<!-- start game -->
+		<div th:if='${gameState==null or not gameState.active}'>
+			<form action="/guess-number/start" method="post">
+				<label for="maxNumber">Max. number: </label><input type="text" name="maxNumber" />
+				<input type="submit" value="START"></input>
+			</form>
+		</div>
+		
+		<!-- guess number -->
+		<div th:if='${gameState!=null and gameState.active}'>
+			<form action="/guess-number" method="post">
+				<label for="guessNumber">Guess a number: </label><input type="text" name="guessNumber" />
+				<input type="submit" value="Check"></input>
+			</form>
+		</div>
+	</div>
+
+</body>
+
+</html>
