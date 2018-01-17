@@ -18,10 +18,21 @@
 
 	<h1>Register</h1>
 	<form action="/register" method="post">
-		Login: <input type="text" name="Login"
+		Login: 
+		<input type="text" name="Login"
 			th:value="${@userController.loggedPlayer?.login}" /><br />
-		Password: <input type="password" name="password" /><br /> <input
-			type="submit" value="Register" />
+		Password: 
+		<input type="password" name="password" /><br />
+			 <input type="submit" value="Register" />
+		
+<!-- 		Repeat password:  -->
+<!-- 		<input type="password" name="password" /><br /> -->
+<!-- 			 <input type="submit" value="Register" />	  -->
+					 
+<!-- 		Email address: -->
+<!-- 		<input type="text" name="email" /><br /> -->
+<!-- 			 <input type="submit" value="Register" /> -->
+			 
 	</form>
 
 
