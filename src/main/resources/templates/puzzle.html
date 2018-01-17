@@ -32,8 +32,7 @@
 			</div>
 			<div class="col-3">
 				<span th:if='${@userController.logged}'> <a
-					th:if='${puzzleController.isFavorite()}'
-					 href='/puzzleFavorite'>
+					th:if='${puzzleController.isFavorite()}' href='/puzzleFavorite'>
 						<img src='obr/up.png' width='50' height='50' />
 				</a> <a th:if='${not puzzleController.isFavorite()}'
 					href='/puzzleFavorite'> <img src='obr/down.png' width='50'
@@ -68,7 +67,6 @@
 			<div class="col-1">
 				<h2>Top Scores</h2>
 			</div>
-			<div class="col-1"></div>
 
 			<div class="col-4">
 				<table class='puzzle_score_table'>
@@ -86,10 +84,10 @@
 			<div class="col-1">
 				<h2>Puzzle Rating</h2>
 			</div>
-			<div class="col-1"></div>
+
 			<span th:if='${@userController.logged}'>
-				<div class="col-3">
-					<form action="/puzzleRating" method="post">
+				<div class="col-6">
+					<form id="ratingFormPuzzle" action="/puzzleRating" method="post">
 						<label for="puzzleRating"> Did you like this game? </label> <br />
 						<select id="puzzleRating" name="newRating">
 							<option value="1">Awesome</option>
@@ -107,6 +105,7 @@
 					</ol>
 				</div>
 			</span>
+
 		</div>
 
 		<br /> <br />

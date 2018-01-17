@@ -48,16 +48,18 @@ public class GuessNumberController {
 	@Autowired
 	private FavoritesService favoriteService;
 
-	@RequestMapping("/guessNumber/start")
+	@RequestMapping("/guessNumberStart")
 	public String startGame(@RequestParam(value = "maxNumber", required = false) Integer maxNumber, Model model) {
 		handleStartGameAction(maxNumber);
+		fillModel(model);
 		return "guessNumber";
 
 	}
 
 	@RequestMapping("/guessNumber")
-	public String guess(@RequestParam(value = "guessNumber", required = true) Integer guessNumber, Model model) {
-		handleGuessNumberAction(guessNumber, model);
+	public String guess(@RequestParam(value = "guessNumber", required = false) Integer guessNumber, Model model) {
+		//handleGuessNumberAction(guessNumber, model);
+		fillModel(model);
 		return "guessNumber";
 
 	}
@@ -89,22 +91,23 @@ public class GuessNumberController {
 		return "guessNumber";
 	}
 
-	// public void processCommand(Integer maxNumber) {
-	// try {
-	// field.moveTile(Integer.parseInt(tile));
-	//
-	// if (field.isSolved()) {
-	// message = "YOU WON";
-	// if (userController.isLogged()) {
-	// scoreService.addScore(
-	// new Score(userController.getLoggedPlayer().getLogin(), "puzzle",
-	// computeFinalScore()));
-	// }
-	// }
-	// } catch (NumberFormatException e) {
-	// generateAndSetRandomNumber(maxNumber);
-	// }
-	// }
+//	 public void processCommand(Integer maxNumber) {
+//	 int turns = 0;
+//	 	 try {
+//			 if (userController.isLogged()) {
+//				  handleStartGameAction(maxNumber);
+//				  handleGuessNumberAction(guessNumber, model);
+//				  
+//				 }
+//				 turns++;
+//			 }
+//	 	} catch (NumberFormatException e) {
+//	 		 handleStartGameAction(maxNumber);
+//	 		 }
+//	 		 
+//			 
+			 
+	
 
 	public void fillModel(Model model) {
 		model.addAttribute("guessNumberController", this);
@@ -117,7 +120,6 @@ public class GuessNumberController {
 		if (maxNumber == null) {
 			maxNumber = 1000;
 		}
-
 		generateAndSetRandomNumber(maxNumber);
 	}
 

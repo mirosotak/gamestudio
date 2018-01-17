@@ -102,10 +102,10 @@
 			<div class="col-1">
 				<h2>Mines Rating</h2>
 			</div>
-			<div class="col-1"></div>
+			
 			<span th:if='${@userController.logged}'>
-				<div class="col-3">
-					<form action="/minesRating" method="post">
+				<div class="col-6">
+					<form id="ratingFormMines" action="/minesRating" method="post">
 						<label for="minesRating"> Did you like this game? </label> <br />
 						<select id="minesRating" name="newRating">
 							<option value="1">Awesome</option>

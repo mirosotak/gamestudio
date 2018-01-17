@@ -1,29 +1,27 @@
-.tablePuzzle td{
-	
+
+
+h2 {
+	font-style: italic;
+	font-size: x-large;
+}
+
+body {
+	background-color: #c0c0c0;
+}
+
+.tablePuzzle td {
 	text-align: center;
 	border: solid;
-	font-size: 4rem;
+	font-size: 5rem;
 	width: 20%;
 	height: 20%;
 }
 
-
 .tableMines {
-	
 	text-align: center;
 	border: solid;
 	width: 30%;
 	height: 30%;
-}
-	
-h2 {
-font-style: italic;
-font-size: x-large;
-
-}
-
-body {
-    background-color: #c0c0c0;
 }
 
 .mines_score_table td {
@@ -31,10 +29,22 @@ body {
 	border: solid;
 	font-style: italic;
 	background-color: white;
-	
+}
+
+.puzzle_score_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+	background-color: white;
 }
 
 .mines_comment_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+	background-color: white;
+}
+.guessNumber_comment_table td {
 	text-align: center;
 	border: solid;
 	font-style: italic;
@@ -45,22 +55,52 @@ body {
 	text-align: center;
 	border: solid;
 	font-style: italic;
-}
-.puzzle_score_table td {
-	text-align: center;
-	border: solid;
-	font-style: italic;
 	background-color: white;
-	
 }
 
 
 
+p {
+	font-style: italic;
+	font-size: large;
+}
 
+th {
+	background-color: #c0c0c0 !important;
+	border: solid;
+}
 
+label {
+	border: dotted;
+	background-color: #c0c0c0 !important;
+}
+
+.puzzle_rating_list {
+	border: solid;
+	font-size: 1.00em;
 	
+}
+
+.mines_rating_list {
+	border: solid;
+	font-size: 1.00em;
 	
-	
-	
-	 
-	
+}
+
+.guessNumber_rating_list {
+	border: solid;
+	font-size: 1.00em;
+
+#ratingFormPuzzle {
+	align: center;
+	font-size: large;
+}
+
+#ratingFormMines {
+	align: center;
+	font-size: large;
+}
+#ratingFormGuessNumber {
+	align: center;
+	font-size: large;
+}
