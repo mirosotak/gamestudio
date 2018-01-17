@@ -17,12 +17,18 @@
 	</form>
 
 	<h1>Register</h1>
+	<span th:if='${error != null}' th:text='${error}'/>
 	<form action="/register" method="post">
 		Login: 
 		<input type="text" name="Login"
 			th:value="${@userController.loggedPlayer?.login}" /><br />
+		Email: 
+		<input type="text" name="Email"
+			th:value="${@userController.loggedPlayer?.email}" /><br />
 		Password: 
 		<input type="password" name="password" /><br />
+		Repeat password: 
+		<input type="password" name="repeatPassword" /><br />
 			 <input type="submit" value="Register" />
 		
 <!-- 		Repeat password:  -->

@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -50,20 +49,44 @@ public class GuessNumberController {
 	@Autowired
 	private FavoritesService favoriteService;
 
-	@RequestMapping(path = "/guessNumber/start", method = RequestMethod.POST)
-	public String startGame(@RequestParam(value = "maxNumber", required = false) Integer maxNumber, Model model) {
+	@RequestMapping("/guessNumber")
+	public String guess(@RequestParam(value = "maxNumber", required = false) String maxNumberInput, 
+			@RequestParam(value = "guessNumber", required = false) String guessNumberInput, Model model) {
 
-		handleStartGameAction(maxNumber, model);
+		fillModel(model);
+		
+		if (maxNumberInput != null && !isPositiveInteger(maxNumberInput)) {
+			model.addAttribute("error", "Invalid number: " + maxNumberInput);
+			return "guessNumber";
+		}
+		if (guessNumberInput != null && !isPositiveInteger(guessNumberInput)) {
+			model.addAttribute("error", "Invalid number: " + guessNumberInput);
+			return "guessNumber";
+		}
+		
+		
+		if (maxNumberInput != null) {
+			int maxNumber = Integer.parseInt(maxNumberInput);
+			
+			if (maxNumber == 0) {
+				model.addAttribute("error", "Invalid number: " + maxNumberInput);
+				return "guessNumber";
+			}
+			
+			handleStartGameAction(maxNumber, model);
+		}
+		
+		if (guessNumberInput != null) {
+			int guessNumber = Integer.parseInt(guessNumberInput);
+			handleGuessNumberAction(guessNumber, model);
+		}
+			
 		return "guessNumber";
 
 	}
-
-	@RequestMapping(path = "/guessNumber", method = RequestMethod.POST)
-	public String guess(@RequestParam(value = "guessNumber", required = true) Integer guessNumber, Model model) {
-
-		handleGuessNumberAction(guessNumber, model);
-		return "guessNumber";
-
+	
+	private boolean isPositiveInteger(String input) {
+		return input.matches("([0-9])*");
 	}
 
 	@RequestMapping("/guessNumberComment")
@@ -115,11 +138,12 @@ public class GuessNumberController {
 		}
 				
 		generateAndSetRandomNumber(maxNumber);
-
+		
 		gameState.setAttempts(0);
 		gameState.setActive(true);
 		gameState.setLastAttemptResult(null);
 		gameState.setStartedDate(new Date());
+		gameState.setMaxNumber(maxNumber);
 
 		model.addAttribute("gameState", gameState);
 
@@ -128,8 +152,15 @@ public class GuessNumberController {
 	private void handleGuessNumberAction(Integer guessNumber, Model model) {
 
 		GuessResult result = null;
+		
 		if (guessNumber.equals(number)) {
 			result = GuessResult.WON;
+			
+			if (userController.isLogged()) {
+				scoreService.addScore(
+						new Score(userController.getLoggedPlayer().getLogin(), "guessNumber", computeFinalScore()));
+
+			}
 
 		} else if (guessNumber.compareTo(number) > 0) {
 			result = GuessResult.GREATER;
@@ -141,8 +172,13 @@ public class GuessNumberController {
 
 		gameState.setAttempts(gameState.getAttempts() + 1);
 		gameState.setLastAttemptResult(result.name());
+		gameState.setLastAttemptNumber(guessNumber);
 
 		model.addAttribute("gameState", gameState);
+	}
+	
+	private int computeFinalScore() {
+		return (this.gameState.maxNumber - this.gameState.attempts) * 100;
 	}
 
 	private void generateAndSetRandomNumber(int maxNumber) {
@@ -158,6 +194,8 @@ public class GuessNumberController {
 		private int attempts;
 		private Date startedDate;
 		private String lastAttemptResult;
+		private Integer maxNumber;
+		private Integer lastAttemptNumber;
 
 		public boolean isActive() {
 			return active;
@@ -191,6 +229,23 @@ public class GuessNumberController {
 			this.lastAttemptResult = lastAttemptResult;
 		}
 
+		public Integer getMaxNumber() {
+			return maxNumber;
+		}
+
+		public void setMaxNumber(Integer maxNumber) {
+			this.maxNumber = maxNumber;
+		}
+
+		public Integer getLastAttemptNumber() {
+			return lastAttemptNumber;
+		}
+
+		public void setLastAttemptNumber(Integer lastAttemptNumber) {
+			this.lastAttemptNumber = lastAttemptNumber;
+		}
+
+		
 	}
 
 }

@@ -7,5 +7,7 @@ public interface PlayerService {
 	void register(Player player);
 
 	Player login(String login, String password);
+	
+	Player findByLogin(String login);
 
 }
