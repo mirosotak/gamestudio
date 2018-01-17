@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -28,6 +29,7 @@ public class GuessNumberController {
 
 	Random rand = new Random();
 	Integer number = null;
+	GameState gameState = new GameState();
 	Date date = new Date();
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	public double rating;
@@ -48,18 +50,18 @@ public class GuessNumberController {
 	@Autowired
 	private FavoritesService favoriteService;
 
-	@RequestMapping("/guessNumberStart")
+	@RequestMapping(path = "/guessNumber/start", method = RequestMethod.POST)
 	public String startGame(@RequestParam(value = "maxNumber", required = false) Integer maxNumber, Model model) {
-		handleStartGameAction(maxNumber);
-		fillModel(model);
+
+		handleStartGameAction(maxNumber, model);
 		return "guessNumber";
 
 	}
 
-	@RequestMapping("/guessNumber")
-	public String guess(@RequestParam(value = "guessNumber", required = false) Integer guessNumber, Model model) {
-		//handleGuessNumberAction(guessNumber, model);
-		fillModel(model);
+	@RequestMapping(path = "/guessNumber", method = RequestMethod.POST)
+	public String guess(@RequestParam(value = "guessNumber", required = true) Integer guessNumber, Model model) {
+
+		handleGuessNumberAction(guessNumber, model);
 		return "guessNumber";
 
 	}
@@ -91,23 +93,14 @@ public class GuessNumberController {
 		return "guessNumber";
 	}
 
-//	 public void processCommand(Integer maxNumber) {
-//	 int turns = 0;
-//	 	 try {
-//			 if (userController.isLogged()) {
-//				  handleStartGameAction(maxNumber);
-//				  handleGuessNumberAction(guessNumber, model);
-//				  
-//				 }
-//				 turns++;
-//			 }
-//	 	} catch (NumberFormatException e) {
-//	 		 handleStartGameAction(maxNumber);
-//	 		 }
-//	 		 
-//			 
-			 
-	
+	public Boolean isFavorite() {
+		if (userController.isLogged()) {
+			Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), "guessNumber");
+			return favoriteService.isFavorite(favorites);
+		}
+		return null;
+
+	}
 
 	public void fillModel(Model model) {
 		model.addAttribute("guessNumberController", this);
@@ -116,11 +109,20 @@ public class GuessNumberController {
 		model.addAttribute("rating", ratingService.getAverageRating("guessNumber"));
 	}
 
-	private void handleStartGameAction(Integer maxNumber) {
+	private void handleStartGameAction(Integer maxNumber, Model model) {
 		if (maxNumber == null) {
 			maxNumber = 1000;
 		}
+				
 		generateAndSetRandomNumber(maxNumber);
+
+		gameState.setAttempts(0);
+		gameState.setActive(true);
+		gameState.setLastAttemptResult(null);
+		gameState.setStartedDate(new Date());
+
+		model.addAttribute("gameState", gameState);
+
 	}
 
 	private void handleGuessNumberAction(Integer guessNumber, Model model) {
@@ -128,18 +130,19 @@ public class GuessNumberController {
 		GuessResult result = null;
 		if (guessNumber.equals(number)) {
 			result = GuessResult.WON;
-			message = "Congrats, you are the winner";
 
 		} else if (guessNumber.compareTo(number) > 0) {
 			result = GuessResult.GREATER;
-			message = "Number is to high, tray again";
 
 		} else {
 			result = GuessResult.LESS;
-			message = "Number is to low, tray again";
+
 		}
 
-		model.addAttribute("result", result);
+		gameState.setAttempts(gameState.getAttempts() + 1);
+		gameState.setLastAttemptResult(result.name());
+
+		model.addAttribute("gameState", gameState);
 	}
 
 	private void generateAndSetRandomNumber(int maxNumber) {
@@ -150,12 +153,43 @@ public class GuessNumberController {
 		WON, GREATER, LESS;
 	}
 
-	public Boolean isFavorite() {
-		if (userController.isLogged()) {
-			Favorites favorites = new Favorites(userController.getLoggedPlayer().getLogin(), "guessNumber");
-			return favoriteService.isFavorite(favorites);
+	public class GameState {
+		private boolean active;
+		private int attempts;
+		private Date startedDate;
+		private String lastAttemptResult;
+
+		public boolean isActive() {
+			return active;
 		}
-		return null;
+
+		public void setActive(boolean active) {
+			this.active = active;
+		}
+
+		public int getAttempts() {
+			return attempts;
+		}
+
+		public void setAttempts(int attempts) {
+			this.attempts = attempts;
+		}
+
+		public Date getStartedDate() {
+			return startedDate;
+		}
+
+		public void setStartedDate(Date startedDate) {
+			this.startedDate = startedDate;
+		}
+
+		public String getLastAttemptResult() {
+			return lastAttemptResult;
+		}
+
+		public void setLastAttemptResult(String lastAttemptResult) {
+			this.lastAttemptResult = lastAttemptResult;
+		}
 
 	}
 
