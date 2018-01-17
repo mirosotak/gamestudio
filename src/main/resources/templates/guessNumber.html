@@ -94,6 +94,8 @@
 		</div>
 
 		<br /> <br />
+		
+		
 
 
 		<div class="row">
@@ -147,6 +149,37 @@
 
 			</div>
 		</div>
+		
+		<div>
+	
+		
+		<div th:if ='${gameState!=null and "WON".equals(gameState.lastAttemptResult)}'>
+			Congratulations - You won !
+		</div>
+		<div th:if ='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "GREATER"}'>
+			Wrong number - your attempt is too high :(
+		</div>
+		<div th:if ='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "LESS"}'>
+			Wrong number - your attempt is too little :(
+		</div>
+		
+		<!-- start game -->
+		<div th:if='${gameState==null or not gameState.active}'>
+			<form action="/guessNumber/start" method="post">
+				<label for="maxNumber">Max. number: </label><input type="text" name="maxNumber" />
+				<input type="submit" value="START"></input>
+			</form>
+		</div>
+		
+		<!-- guess number -->
+		<div th:if='${gameState!=null and gameState.active}'>
+			<form action="/guessNumber" method="post">
+				<label for="guessNumber">Guess a number: </label><input type="text" name="guessNumber" />
+				<input type="submit" value="Check"></input>
+			</form>
+		</div>
+	</div>
+		
 	</div>
 
 </body>
