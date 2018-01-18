@@ -1,151 +1,104 @@
-html {
-    font-size: 100%;
-    font-family: "Tw Cen MT", Arial, Helvetica, sans-serif;
-    font-style: normal; /*normal, italic, oblique (obl.-similar to italic*/
-    font-weight: normal; /*normal, bold*/
-    text-align: justify; /*justify, left, right, center*/
-    color: black;
+h2 {
+	font-style: italic;
+	font-size: x-large;
 }
 
-a:link, a:visited{
-    text-decoration: none;
-    color: rgb(63, 38, 0);
+body {
+	background-color: #c0c0c0;
 }
 
-a:hover{
-    text-decoration: underline;
-    color: #982d3b;
-}
-
-body > * {
-    margin: 0.5rem;
-}
-
-body > header{
-    border-radius: 1rem;
-    padding:0.5rem;
-    text-align:center;
-    background-color: rgb(150,153,20);
-}
-
-table {
-	width: 90%;
-	border: 1px solid black;
+.tablePuzzle td {
 	text-align: center;
+	border: solid;
+	font-size: 5rem;
+	width: 20%;
+	height: 20%;
 }
 
-.menu {
-    text-align: left;
-    padding-left: 0.5em;
+.tableMines {
+	text-align: center;
+	border: solid;
+	width: 30%;
+	height: 30%;
 }
 
-#menuCl{
-    position:absolute;
-    padding: 0.5em;
-    max-width: 5em;
-    min-width: 4em;
-    border-radius: 0.5rem;
-    background-color: rgb(204,153,0);
+.mines_score_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+	background-color: white;
 }
 
-#menuCl > a {
-    display: block;
+.puzzle_score_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+	background-color: white;
 }
 
-#menuClNazov{
-    border: 0;
-    background-color: rgb(204,153,0);
-    outline:none;
+.mines_comment_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+	background-color: white;
+}
+.guessNumber_comment_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+	background-color: white;
 }
 
-#menuClNazov:hover, #menuCl > a:hover{
-    text-decoration: none;
-    color: #982d3b;
-    background-color: rgb(255,246,214);
-}
-
-.skryty {display:none;}
-
-
-.zobraz {display:block;}
-
-/*
-musi byt za skryty. Inac by fungovalo ak by zobrazAleboSkriMenu bola
-    function zobrazAleboSkriMenu(){
-        document.getElementById("menuCl").classList.toggle("zobraz");
-        document.getElementById("menuCl").classList.toggle("skryty");
-    }
-*/
-
-body > footer{
-    font-size: 0.8rem;
-}
-
-main > article{
-    background-color: rgb(155, 246, 152);
-    border-radius: 1rem;
-    padding: 0.3rem;
-    margin-bottom: 1rem;
-}
-
-main > article > *{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
-
-main > article > h2{
-    background-color: rgb(153, 300, 162);
-    border-radius: 1rem;
-    margin: 0;
-}
-
-body > aside{
-    background-color: rgb(53, 255, 162);
-    border-radius: 1rem;
-    color:lightblue;
-    font-size: 0.9em;
-    height: 8em;
-    padding: 0.5em;
+.puzzle_comment_table td {
+	text-align: center;
+	border: solid;
+	font-style: italic;
+	background-color: white;
 }
 
 
 
-
-/*
-FLEXBOX LAYOUT
-*/
-body{
-    display: flex;
-    flex-direction: column;
-}
-li{
-    flex-grow: 1; /*aby zabrali celu sirku*/
-}
-body > footer{
-    order: 1; /*aby bol posledny. Ostatne maju implicitne hodnotu 0, tzn. sa zobrazia podla poradia v html*/
+p {
+	font-style: italic;
+	font-size: large;
 }
 
-
-
-@media only screen and (min-width: 600px){
-
-    body{
-        min-width: 35rem;
-        max-width: 60rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
+th {
+	background-color: #c0c0c0 !important;
+	border: solid;
 }
 
-
-@media only screen and (max-width: 599px){
-
-    body{
-        width: 100%;
-    }
-
+label {
+	border: dotted;
+	background-color: #c0c0c0 !important;
 }
 
+.puzzle_rating_list {
+	border: solid;
+	font-size: 1.00em;
+	
+}
 
+.mines_rating_list {
+	border: solid;
+	font-size: 1.00em;
+	
+}
 
+.guessNumber_rating_list {
+	border: solid;
+	font-size: 1.00em;
+
+#ratingFormPuzzle {
+	align: center;
+	font-size: large;
+}
+
+#ratingFormMines {
+	align: center;
+	font-size: large;
+}
+#ratingFormGuessNumber {
+	align: center;
+	font-size: large;
+}

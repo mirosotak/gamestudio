@@ -50,11 +50,11 @@ public class GuessNumberController {
 	private FavoritesService favoriteService;
 
 	@RequestMapping("/guessNumber")
-	public String guess(@RequestParam(value = "maxNumber", required = false) String maxNumberInput, 
+	public String guess(@RequestParam(value = "maxNumber", required = false) String maxNumberInput,
 			@RequestParam(value = "guessNumber", required = false) String guessNumberInput, Model model) {
 
 		fillModel(model);
-		
+
 		if (maxNumberInput != null && !isPositiveInteger(maxNumberInput)) {
 			model.addAttribute("error", "Invalid number: " + maxNumberInput);
 			return "guessNumber";
@@ -63,28 +63,27 @@ public class GuessNumberController {
 			model.addAttribute("error", "Invalid number: " + guessNumberInput);
 			return "guessNumber";
 		}
-		
-		
+
 		if (maxNumberInput != null) {
 			int maxNumber = Integer.parseInt(maxNumberInput);
-			
+
 			if (maxNumber == 0) {
 				model.addAttribute("error", "Invalid number: " + maxNumberInput);
 				return "guessNumber";
 			}
-			
+
 			handleStartGameAction(maxNumber, model);
 		}
-		
+
 		if (guessNumberInput != null) {
 			int guessNumber = Integer.parseInt(guessNumberInput);
 			handleGuessNumberAction(guessNumber, model);
 		}
-			
+
 		return "guessNumber";
 
 	}
-	
+
 	private boolean isPositiveInteger(String input) {
 		return input.matches("([0-9])*");
 	}
@@ -136,9 +135,9 @@ public class GuessNumberController {
 		if (maxNumber == null) {
 			maxNumber = 1000;
 		}
-				
+
 		generateAndSetRandomNumber(maxNumber);
-		
+
 		gameState.setAttempts(0);
 		gameState.setActive(true);
 		gameState.setLastAttemptResult(null);
@@ -152,10 +151,10 @@ public class GuessNumberController {
 	private void handleGuessNumberAction(Integer guessNumber, Model model) {
 
 		GuessResult result = null;
-		
+
 		if (guessNumber.equals(number)) {
 			result = GuessResult.WON;
-			
+
 			if (userController.isLogged()) {
 				scoreService.addScore(
 						new Score(userController.getLoggedPlayer().getLogin(), "guessNumber", computeFinalScore()));
@@ -176,7 +175,7 @@ public class GuessNumberController {
 
 		model.addAttribute("gameState", gameState);
 	}
-	
+
 	private int computeFinalScore() {
 		return (this.gameState.maxNumber - this.gameState.attempts) * 100;
 	}
@@ -245,7 +244,6 @@ public class GuessNumberController {
 			this.lastAttemptNumber = lastAttemptNumber;
 		}
 
-		
 	}
 
 }
