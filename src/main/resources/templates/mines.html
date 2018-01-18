@@ -18,18 +18,14 @@
 	<!-- 				<tr> -->
 	<!-- 					<a th:href='${favovorite.game}'><img th:src='${"obr/" + favorite.game + ".jpg" }' width='70' height='70'/> </a> -->
 
+	<header>
+		<h1>MINES</h1>
+	</header>
+	<br />
+
+
+
 	<div class="container">
-		<div class="row">
-			<div class="col-4"></div>
-			<div class="col-7">
-				<h1>MINES</h1>
-			</div>
-		</div>
-		<br />
-
-
-
-
 		<div class="row">
 
 			<div class="col-3">
@@ -57,7 +53,15 @@
 
 
 		<div class="row">
-			<div class="col-4"></div>
+			<div class="col-4">
+				<figure>
+					<img src="obr/minesweeper2.png" height="150" title="mines1" alt="mines1" />
+				</figure>
+
+
+
+
+			</div>
 			<div class="col-5">
 				<p th:utext='${minesController.render()}' />
 
@@ -69,7 +73,12 @@
 				</a> <br />
 
 			</div>
-			<div class="col-3"></div>
+			<div class="col-3">
+			<figure>
+					<img src="obr/minesweeper.png" height="150" title="mines2" alt="mines2" />
+				</figure>
+			
+			</div>
 		</div>
 		<br />
 
@@ -102,7 +111,7 @@
 			<div class="col-1">
 				<h2>Mines Rating</h2>
 			</div>
-			
+
 			<span th:if='${@userController.logged}'>
 				<div class="col-6">
 					<form id="ratingFormMines" action="/minesRating" method="post">
@@ -152,7 +161,7 @@
 						<th>Best score</th>
 						<th>Date</th>
 					</tr>
-										
+
 					<tr th:each='comment : ${comment}'>
 						<td th:text='${comment.username}' />
 						<td th:text='${comment.content}' />

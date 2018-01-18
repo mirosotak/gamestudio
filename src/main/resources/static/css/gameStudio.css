@@ -1,12 +1,21 @@
-
-
 h2 {
 	font-style: italic;
-	font-size: x-large;
+	font-size: larger;
 }
 
 body {
-	background-color: #c0c0c0;
+	background-color: #ffeafa;
+}
+
+body>header {
+	border-radius: 1rem;
+	padding: 0.5rem;
+	text-align: center;
+	background-color: magenta;
+}
+
+table {
+	border: solid;
 }
 
 .tablePuzzle td {
@@ -44,6 +53,7 @@ body {
 	font-style: italic;
 	background-color: white;
 }
+
 .guessNumber_comment_table td {
 	text-align: center;
 	border: solid;
@@ -57,8 +67,6 @@ body {
 	font-style: italic;
 	background-color: white;
 }
-
-
 
 p {
 	font-style: italic;
@@ -76,23 +84,15 @@ label {
 }
 
 .puzzle_rating_list {
-	border: solid;
 	font-size: 1.00em;
-	
 }
 
 .mines_rating_list {
-	border: solid;
 	font-size: 1.00em;
-	
 }
 
 .guessNumber_rating_list {
-	border: solid;
-	font-size: 1.00em;
-
-#ratingFormPuzzle {
-	align: center;
+	font-size: 1.00em; # ratingFormPuzzle { align : center;
 	font-size: large;
 }
 
@@ -100,7 +100,35 @@ label {
 	align: center;
 	font-size: large;
 }
+
 #ratingFormGuessNumber {
 	align: center;
 	font-size: large;
+}
+
+main>article {
+	background-color: magenta;
+	border-radius: 1rem;
+	padding: 0.3rem;
+	margin-bottom: 1rem;
+}
+
+#Intro {
+	background-color: magenta;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+li {
+	flex-grow: 1;
+}
+
+body>footer {
+	order: 1;
+	#
+	guessNumberGamePlayTable
+	{
 }

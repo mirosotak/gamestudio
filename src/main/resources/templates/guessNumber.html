@@ -12,14 +12,12 @@
 </head>
 <body>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-4"></div>
-			<div class="col-8">
-				<h1>GuessNumber</h1>
-			</div>
-		</div>
+	<header>
+		<h1>GuessNumber</h1>
+	</header>
+	<br />
 
+	<div class="container">
 		<div class="row">
 
 			<div class="col-3">
@@ -58,7 +56,7 @@
 				<h2>Top Scores</h2>
 			</div>
 
-			<div class="col-4">
+			<div class="col-2">
 				<table class='guessNumber_score_table'>
 					<tr th:each='score : ${scores}'>
 						<td th:text='${score.username}' />
@@ -68,15 +66,20 @@
 				<br /> <br />
 			</div>
 
-			<div class="col-1"></div>
+			<div class="col-3">
+				<figure>
+					<img src="obr/guessTheNumber.jpg" height="100" width= "120" title="guessTheNumber"
+						alt="guessTheNumber" />
+				</figure>
+			</div>
 
 
-			<div class="col-1">
+			<div class="col-2">
 				<h2>Guess Number Rating</h2>
 			</div>
 
 			<span th:if='${@userController.logged}'>
-				<div class="col-6">
+				<div class="col-4">
 					<form id="guessNumberFormPuzzle" action="/guessNumberRating"
 						method="post">
 						<label for="guessNumberRating"> Did you like this game? </label> <br />
@@ -101,18 +104,61 @@
 
 		<br /> <br />
 
-		<div class="col-12">
 
-			<div th:if='${gameState!=null and gameState.active}'>
-				<form action="/guessNumber" method="post">
-					<label for="guessNumber"
-						th:if='${gameState != null and gameState.maxNumber != null}'
-						th:text='${"Guess a number from 0 to " + gameState.maxNumber}'></label><input
-						type="text" name="guessNumber" /> <input type="submit"
-						value="Guess"></input>
-				</form>
+		<div class="row">
+			<div class="col-12">
+				<div>
+
+					<table id="guessNumberGamePlayTable" style="border: 1px 1px 1px 1px">
+						<tr>
+							<td><span th:if='${error != null}' th:text='${error}' /></td>
+						</tr>
+						<tr>
+							<td>
+								<!-- start game -->
+								<div th:if='${gameState==null or not gameState.active}'>
+									<form action="/guessNumber" method="post">
+										<label for="maxNumber">Max. number: </label><input type="text"
+											name="maxNumber" /> <input type="submit" value="START"></input>
+									</form>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div
+									th:if='${gameState!=null and "WON".equals(gameState.lastAttemptResult)}'>
+									Congratulations - You won ! <a href='/guessNumber'>NEW GAME</a>
+								</div> <span
+								th:if='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "GREATER"}'
+								th:text='${"Wrong number " + gameState.lastAttemptNumber + " - your attempt is too high :("}' />
+
+								<span
+								th:if='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "LESS"}'
+								th:text='${"Wrong number " + gameState.lastAttemptNumber + " - your attempt is too little :("}' />
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- guess number -->
+								<div th:if='${gameState!=null and gameState.active}'>
+									<form action="/guessNumber" method="post">
+										<label for="guessNumber"
+											th:if='${gameState != null and gameState.maxNumber != null}'
+											th:text='${"Guess a number from 0 to " + gameState.maxNumber}'></label><input
+											type="text" name="guessNumber" /> <input type="submit"
+											value="Guess"></input>
+									</form>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
+
+		<br /> <br />
 
 
 
@@ -169,54 +215,7 @@
 			</div>
 		</div>
 
-		<div>
 
-			<table style="border: 1px 1px 1px 1px">
-				<tr>
-					<td><span th:if='${error != null}' th:text='${error}' /></td>
-				</tr>
-				<tr>
-					<td>
-						<!-- start game -->
-						<div th:if='${gameState==null or not gameState.active}'>
-							<form action="/guessNumber" method="post">
-								<label for="maxNumber">Max. number: </label><input type="text"
-									name="maxNumber" /> <input type="submit" value="START"></input>
-							</form>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div
-							th:if='${gameState!=null and "WON".equals(gameState.lastAttemptResult)}'>
-							Congratulations - You won ! <a href='/guessNumber'>NEW GAME</a>
-						</div> <span
-						th:if='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "GREATER"}'
-						th:text='${"Wrong number " + gameState.lastAttemptNumber + " - your attempt is too high :("}' />
-
-						<span
-						th:if='${gameState!=null and gameState.lastAttemptResult != null and gameState.lastAttemptResult == "LESS"}'
-						th:text='${"Wrong number " + gameState.lastAttemptNumber + " - your attempt is too little :("}' />
-
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<!-- guess number -->
-						<div th:if='${gameState!=null and gameState.active}'>
-							<form action="/guessNumber" method="post">
-								<label for="guessNumber"
-									th:if='${gameState != null and gameState.maxNumber != null}'
-									th:text='${"Guess a number from 0 to " + gameState.maxNumber}'></label><input
-									type="text" name="guessNumber" /> <input type="submit"
-									value="Guess"></input>
-							</form>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
 
 	</div>
 
