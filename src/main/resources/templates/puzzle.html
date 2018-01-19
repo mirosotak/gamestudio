@@ -30,10 +30,10 @@
 			<div class="col-3">
 				<span th:if='${@userController.logged}'> <a
 					th:if='${puzzleController.isFavorite()}' href='/puzzleFavorite'>
-						<img src='obr/up.png' width='50' height='50' />
+						<img src='obr/up.png' width='80' height='80' />
 				</a> <a th:if='${not puzzleController.isFavorite()}'
-					href='/puzzleFavorite'> <img src='obr/down.png' width='50'
-						height='50' />
+					href='/puzzleFavorite'> <img src='obr/down.png' width='80'
+						height='80' />
 				</a>
 				</span>
 			</div>
