@@ -6,8 +6,8 @@ import gamestudio.puzzle.UI.ConsoleUI;
 
 public class Puzzle {
 
-	public static void main(String[] args) {
-		ConsoleUI ui = new ConsoleUI();
-		ui.run();
-	}
+//	public static void main(String[] args) {
+//		ConsoleUI ui = new ConsoleUI();
+//		ui.run();
+//	}
 }

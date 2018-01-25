@@ -11,6 +11,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.4.RELEASE</version>
 	</parent>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>

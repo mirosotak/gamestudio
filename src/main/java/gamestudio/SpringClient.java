@@ -28,11 +28,11 @@ import gamestudio.service.impl.ScoreServiceRestClient;
 
 public class SpringClient {
 
-	public static void main(String[] args) throws Exception {
-		// SpringApplication.run(SpringClient.class, args);
-		new SpringApplicationBuilder(SpringClient.class).web(false).run(args);
-
-	}
+//	public static void main(String[] args) throws Exception {
+//		// SpringApplication.run(SpringClient.class, args);
+//		new SpringApplicationBuilder(SpringClient.class).web(false).run(args);
+//
+//	}
 
 	@Bean
 	public CommandLineRunner runner(ConsoleMenu menu) {

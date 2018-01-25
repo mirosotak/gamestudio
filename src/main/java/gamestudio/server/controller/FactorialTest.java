@@ -2,15 +2,15 @@ package gamestudio.server.controller;
 
 public class FactorialTest {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		run(1);
-		run(3);
-		run(5);
-		runFac5();
-
-	}
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//
+//		run(1);
+//		run(3);
+//		run(5);
+//		runFac5();
+//
+//	}
 	
 	public static void run(int number) {
 		int result = 1;

@@ -30,7 +30,6 @@ public class PlayerServiceJPA implements PlayerService {
 		} catch (NoResultException e) {
 			return null;
 		}
-
 	}
 
 	@Override

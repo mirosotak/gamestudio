@@ -245,62 +245,62 @@ public class SORM {
 		}
 	}
 
-	public static void main(String[] args) {
-		SORM sorm = new SORM();
+//	public static void main(String[] args) {
+//		SORM sorm = new SORM();
+//
+//		System.out.println(sorm.getCreateTableString(Score.class));
+//		System.out.println(sorm.getCreateTableString(Rating.class));
+//		System.out.println(sorm.getCreateTableString(Comment.class));
+//
+//		System.out.println(sorm.getSelectString(Score.class));
+//		System.out.println(sorm.getSelectString(Rating.class));
+//		System.out.println(sorm.getSelectString(Comment.class));
+//
+//		System.out.println(sorm.getInsertString(Score.class));
+//		System.out.println(sorm.getInsertString(Rating.class));
+//		System.out.println(sorm.getInsertString(Comment.class));
+//
+//		System.out.println(sorm.getUpdateString(Score.class));
+//		System.out.println(sorm.getUpdateString(Rating.class));
+//		System.out.println(sorm.getUpdateString(Comment.class));
+//
+//		System.out.println(sorm.getDeleteString(Score.class));
+//		System.out.println(sorm.getDeleteString(Rating.class));
+//		System.out.println(sorm.getDeleteString(Comment.class));
+//		//
+//		// Score score = new Score();
+//		// score.setUsername("jaro");
+//		// score.setGame("mines");
+//		// score.setValue(100);
+//		//
+//		// sorm.insert(score);
+//		//
+//		// Rating rating = new Rating();
+//		// rating.setUsername("fero");
+//		// rating.setGame("mines");
+//		// rating.setValue(2);
+//		// sorm.insert(rating);
+//		//
+//		// System.out.println(sorm.getCreateTableString(Osoba.class));
+//		// System.out.println(sorm.getSelectString(Osoba.class));
+//		//
+//		// Osoba osoba = new Osoba();
+//		// osoba.setMeno("Janko");
+//		// osoba.setPriezvisko("Hrasko");
+//		// osoba.setVek(23);
+//		// sorm.insert(osoba);
+//
+//		// System.out.println(sorm.select(Osoba.class));
+//		// System.out.println(sorm.select(Osoba.class, "WHERE vek > 23"));
+//
+////		List<Score> scores = sorm.select(Score.class, "WHERE ident > 22");
+////		System.out.println(scores);
+////		for (Score score : scores) {
+////			score.setValue(500);
+////			sorm.update(score);
+////		}
 
-		System.out.println(sorm.getCreateTableString(Score.class));
-		System.out.println(sorm.getCreateTableString(Rating.class));
-		System.out.println(sorm.getCreateTableString(Comment.class));
-
-		System.out.println(sorm.getSelectString(Score.class));
-		System.out.println(sorm.getSelectString(Rating.class));
-		System.out.println(sorm.getSelectString(Comment.class));
-
-		System.out.println(sorm.getInsertString(Score.class));
-		System.out.println(sorm.getInsertString(Rating.class));
-		System.out.println(sorm.getInsertString(Comment.class));
-
-		System.out.println(sorm.getUpdateString(Score.class));
-		System.out.println(sorm.getUpdateString(Rating.class));
-		System.out.println(sorm.getUpdateString(Comment.class));
-
-		System.out.println(sorm.getDeleteString(Score.class));
-		System.out.println(sorm.getDeleteString(Rating.class));
-		System.out.println(sorm.getDeleteString(Comment.class));
-		//
-		// Score score = new Score();
-		// score.setUsername("jaro");
-		// score.setGame("mines");
-		// score.setValue(100);
-		//
-		// sorm.insert(score);
-		//
-		// Rating rating = new Rating();
-		// rating.setUsername("fero");
-		// rating.setGame("mines");
-		// rating.setValue(2);
-		// sorm.insert(rating);
-		//
-		// System.out.println(sorm.getCreateTableString(Osoba.class));
-		// System.out.println(sorm.getSelectString(Osoba.class));
-		//
-		// Osoba osoba = new Osoba();
-		// osoba.setMeno("Janko");
-		// osoba.setPriezvisko("Hrasko");
-		// osoba.setVek(23);
-		// sorm.insert(osoba);
-
-		// System.out.println(sorm.select(Osoba.class));
-		// System.out.println(sorm.select(Osoba.class, "WHERE vek > 23"));
-
-//		List<Score> scores = sorm.select(Score.class, "WHERE ident > 22");
-//		System.out.println(scores);
-//		for (Score score : scores) {
-//			score.setValue(500);
-//			sorm.update(score);
-//		}
-
-		Score score = sorm.find(Score.class, 22);
-		System.out.println(score);
-	}
+//		Score score = sorm.find(Score.class, 22);
+//		System.out.println(score);
+//	}
 }
